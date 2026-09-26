@@ -85,3 +85,6 @@ desktop.ini
 *.db
 *.pid
 *.seed
+
+# ===== 坑槽修补落盘数据 =====
+backend/data/
