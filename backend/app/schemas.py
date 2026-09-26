@@ -21,6 +21,24 @@ class ActionResult(BaseModel):
     entry: dict[str, Any] | None = None
 
 
+class StatCard(BaseModel):
+    """统计卡：标签加数值，由后端按同一份行数据算出。"""
+
+    label: str
+    value: float
+
+
+class PotholeListResult(BaseModel):
+    """坑槽修补列表响应：分页明细、统计卡、底部合计同一次返回，保证口径一致。"""
+
+    items: list[dict[str, Any]]
+    total: int
+    page: int = 1
+    size: int = 20
+    cards: list[StatCard] = Field(default_factory=list)
+    totals: dict[str, float] = Field(default_factory=dict)
+
+
 class EntryPayload(BaseModel):
     """登记或修改一条业务记录时提交的字段集合。"""
 
